@@ -1,0 +1,27 @@
+ if($row['outgoing_msg_id'] === $outgoing_id){
+                    $message_to_dencrypt = $row['msg'] ;
+                    $secret_key = "mysecretkey";
+                    $method = "aes128";
+                    $iv_length = openssl_cipher_iv_length($method);
+                    $iv = openssl_random_pseudo_bytes($iv_length);
+            
+                    $decrypted_message =  base64_decode($message_to_dencrypt);
+                    $output .= '<div class="chat outgoing">
+                                <div class="details">
+                                    <p>'.$decrypted_message  .'</p>
+                                </div>
+                                </div>';
+                }else{
+                    $message_to_dencrypt = $row['msg'] ;
+                    $secret_key = "mysecretkey";
+                    $method = "aes128";
+                    $iv_length = openssl_cipher_iv_length($method);
+                    $iv = openssl_random_pseudo_bytes($iv_length);
+            
+                    $decrypted_message =  base64_decode($message_to_dencrypt);
+                    $output .= '<div class="chat incoming">
+                                <img src="php/images/'.$row['img'].'" alt="">
+                                <div class="details">
+                                    <p>'.$decrypted_message.'</p>
+                                </div>
+                                </div>';
